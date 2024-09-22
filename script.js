@@ -87,8 +87,12 @@ function loadTrack() {
 setProgress();
 
 audio.addEventListener('loadedmetadata', () => {
-    loadTrack()
+  if (audio.duration > 0) {
+    updateProgress();
+    audio.play();
+}
+
     updateProgress()
     setProgress()
-    audio.play();
+    
   });
