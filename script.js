@@ -88,8 +88,20 @@ function loadTrack() {
 setProgress();
 
 audio.addEventListener('loadedmetadata', () => {
-    updateProgress()
-    setProgress()
+  const progressPercent = (audio.currentTime / audio.duration) * 100;
+  progress.value = progressPercent;
+
+  const minutes = Math.floor(audio.currentTime / 60);
+  const seconds = Math.floor(audio.currentTime % 60);
+  currentTimeEl.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+
+  const totalMinutes = Math.floor(audio.duration / 60);
+  const totalSeconds = Math.floor(audio.duration % 60);
+  durationEl.textContent = `${totalMinutes}:${
+    totalSeconds < 10 ? "0" : ""
+  }${totalSeconds}`;
+  const newTime = (progress.value / 100) * audio.duration;
+  audio.currentTime = newTime;
     audio.play();
     isPlaying = true;
   });
