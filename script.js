@@ -83,28 +83,25 @@ function loadTrack() {
     trackName.textContent = tracks[currentTrackIndex].title 
     
     playPausePic.src = "./file-storage/assets/svg/pause.png"
-    
-}
-setProgress();
+    audio.addEventListener('loadedmetadata', function () {
+      // После полной загрузки метаданных обновляем длительность
+      updateProgress(); // Обновляем интерфейс
+      setProgress();
 
-audio.addEventListener('loadedmetadata', () => {
-  const progressPercent = (audio.currentTime / audio.duration) * 100;
-  progress.value = progressPercent;
-
-  const minutes = Math.floor(audio.currentTime / 60);
-  const seconds = Math.floor(audio.currentTime % 60);
-  currentTimeEl.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-
-  const totalMinutes = Math.floor(audio.duration / 60);
-  const totalSeconds = Math.floor(audio.duration % 60);
-  durationEl.textContent = `${totalMinutes}:${
-    totalSeconds < 10 ? "0" : ""
-  }${totalSeconds}`;
-  const newTime = (progress.value / 100) * audio.duration;
-  audio.currentTime = newTime;
-    audio.play();
-    isPlaying = true;
+      if (isPlaying) {
+          audio.play(); // Начинаем воспроизведение только если файл готов
+      }
   });
+}
+
+
+// audio.addEventListener('loadedmetadata', () => {
+//     updateProgress()
+//     setProgress()
+//     audio.play();
+//     isPlaying = true;
+//   });
 
   loadTrack()
   updateProgress()
+  setProgress();
