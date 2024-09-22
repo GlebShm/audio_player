@@ -31,7 +31,6 @@ let tracks = [
 playPauseBtn.addEventListener("click", togglePlayPause);
 audio.addEventListener("timeupdate", updateProgress);
 progress.addEventListener("input", setProgress);
-audio.addEventListener("loadedmetadata", loadMetadata);
 
 function togglePlayPause() {
   if (isPlaying) {
@@ -45,7 +44,6 @@ function togglePlayPause() {
 }
 
 function updateProgress() {
-  if (audio.duration) {
   const progressPercent = (audio.currentTime / audio.duration) * 100;
   progress.value = progressPercent;
 
@@ -59,22 +57,12 @@ function updateProgress() {
     totalSeconds < 10 ? "0" : ""
   }${totalSeconds}`;
 }
-}
 
 function setProgress() {
-  if (!isNaN(audio.duration)) {
   const newTime = (progress.value / 100) * audio.duration;
   audio.currentTime = newTime;
 }
-}
 
-function loadMetadata() {
-  if (audio.duration) {
-    const totalMinutes = Math.floor(audio.duration / 60);
-    const totalSeconds = Math.floor(audio.duration % 60);
-    durationEl.textContent = `${totalMinutes}:${totalSeconds < 10 ? "0" : ""}${totalSeconds}`;
-  }
-}
 prevBtn.addEventListener("click", () => {
   currentTrackIndex = currentTrackIndex > 0 ? currentTrackIndex - 1 : tracks.length - 1;
   loadTrack()
@@ -88,17 +76,19 @@ nextBtn.addEventListener("click", () => {
   });
 
 function loadTrack() {
-  const track = tracks[currentTrackIndex];
-  audio.src = track.audio;
-  songImg.src = track.img;
-  artistName.textContent = track.artist;
-  trackName.textContent = track.title;
-  audio.load();
-  if (isPlaying) {
-    audio.play();
-  }
+    audio.src = tracks[currentTrackIndex].audio;
+    audio.load(); 
+    songImg.src = tracks[currentTrackIndex].img;
+    artistName.textContent = tracks[currentTrackIndex].artist;
+    trackName.textContent = tracks[currentTrackIndex].title 
+    
+    playPausePic.src = "./file-storage/assets/svg/pause.png"
+    isPlaying = true;
 }
-  
 setProgress();
 
-loadTrack()
+audio.addEventListener('loadedmetadata', () => {
+    updateProgress()
+    setProgress()
+    audio.play();
+  });
