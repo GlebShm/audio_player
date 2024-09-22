@@ -77,22 +77,20 @@ nextBtn.addEventListener("click", () => {
 
 function loadTrack() {
     audio.src = tracks[currentTrackIndex].audio;
-    songImg.src = tracks[currentTrackIndex].img;
-    artistName.textContent = tracks[currentTrackIndex].artist;
-    trackName.textContent = tracks[currentTrackIndex].title 
-    audio.load(); 
-    playPausePic.src = "./file-storage/assets/svg/pause.png"
-    isPlaying = true;
+    
 }
 setProgress();
 
 audio.addEventListener('loadedmetadata', () => {
-  if (audio.duration > 0) {
-    updateProgress();
-    audio.play();
-}
+  songImg.src = tracks[currentTrackIndex].img;
+  artistName.textContent = tracks[currentTrackIndex].artist;
+  trackName.textContent = tracks[currentTrackIndex].title 
+  audio.load(); 
+  playPausePic.src = "./file-storage/assets/svg/pause.png"
+  isPlaying = true;
 
+    loadTrack()
     updateProgress()
     setProgress()
-    
+    audio.play();
   });
