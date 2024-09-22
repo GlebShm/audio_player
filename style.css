@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.audio__wrapper {
+    width: 250pt;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px black solid
+}
+
+.songImg {
+    width: 103%;
+    transition: 1s;
+    object-fit: cover;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.play img {
+    width: 50px;
+}
+
+button {
+    background-color: transparent;
+    border: 1px white solid;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+button img{
+    height: 50px;
+    
+}
+
+.progress-container {
+    width: 180px;
+    margin: 0 auto;
+}
+
+input {
+    width: 100%;
+}
+
+.duration {
+    text-align: right;
+    color: rgb(193, 255, 6);
+}
+
+.time {
+    color: black
+}
