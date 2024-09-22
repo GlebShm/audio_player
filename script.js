@@ -32,6 +32,14 @@ playPauseBtn.addEventListener("click", togglePlayPause);
 audio.addEventListener("timeupdate", updateProgress);
 progress.addEventListener("input", setProgress);
 
+audio.addEventListener('loadedmetadata', () => {
+  updateProgress()
+  setProgress()
+  audio.play();
+  isPlaying = true;
+});
+
+
 function togglePlayPause() {
   if (isPlaying) {
     audio.pause();
@@ -83,25 +91,10 @@ function loadTrack() {
     trackName.textContent = tracks[currentTrackIndex].title 
     
     playPausePic.src = "./file-storage/assets/svg/pause.png"
-    audio.addEventListener('loadedmetadata', function () {
-      // После полной загрузки метаданных обновляем длительность
-      updateProgress(); // Обновляем интерфейс
-      setProgress();
-
-      if (isPlaying) {
-          audio.play(); // Начинаем воспроизведение только если файл готов
-      }
-  });
+    
 }
+setProgress();
 
-
-// audio.addEventListener('loadedmetadata', () => {
-//     updateProgress()
-//     setProgress()
-//     audio.play();
-//     isPlaying = true;
-//   });
 
   loadTrack()
   updateProgress()
-  setProgress();
