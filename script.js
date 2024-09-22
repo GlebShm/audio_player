@@ -77,7 +77,7 @@ nextBtn.addEventListener("click", () => {
 
 function loadTrack() {
     audio.src = tracks[currentTrackIndex].audio;
-    
+    audio.load(); 
 }
 setProgress();
 
@@ -85,7 +85,7 @@ audio.addEventListener('loadedmetadata', () => {
   songImg.src = tracks[currentTrackIndex].img;
   artistName.textContent = tracks[currentTrackIndex].artist;
   trackName.textContent = tracks[currentTrackIndex].title 
-  audio.load(); 
+  
   playPausePic.src = "./file-storage/assets/svg/pause.png"
   isPlaying = true;
 
