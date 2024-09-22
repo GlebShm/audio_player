@@ -83,7 +83,7 @@ function loadTrack() {
     trackName.textContent = tracks[currentTrackIndex].title 
     
     playPausePic.src = "./file-storage/assets/svg/pause.png"
-    isPlaying = true;
+    
 }
 setProgress();
 
@@ -91,4 +91,8 @@ audio.addEventListener('loadedmetadata', () => {
     updateProgress()
     setProgress()
     audio.play();
+    isPlaying = true;
   });
+
+  loadTrack()
+  updateProgress()
