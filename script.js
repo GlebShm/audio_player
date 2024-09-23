@@ -90,7 +90,6 @@ function loadTrack() {
     songImg.src = tracks[currentTrackIndex].img;
     artistName.textContent = tracks[currentTrackIndex].artist;
     trackName.textContent = tracks[currentTrackIndex].title 
-    // body.style.backgroundImage = `url("${tracks[currentTrackIndex].img}")`
     body.style.setProperty('--background-image', `url("${tracks[currentTrackIndex].img}")`);
     playPausePic.src = "./file-storage/assets/svg/pause.png"
     
@@ -100,3 +99,4 @@ setProgress();
 
   loadTrack()
   updateProgress()
+  body.style.setProperty('--background-image', `url("${tracks[currentTrackIndex].img}")`);
