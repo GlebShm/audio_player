@@ -36,8 +36,9 @@ progress.addEventListener("input", setProgress);
 audio.addEventListener('loadedmetadata', () => {
   updateProgress()
   setProgress()
-  audio.play();
-  isPlaying = true;
+  if (isPlaying) {
+    audio.play();
+  } 
 });
 
 
@@ -91,12 +92,9 @@ function loadTrack() {
     artistName.textContent = tracks[currentTrackIndex].artist;
     trackName.textContent = tracks[currentTrackIndex].title 
     body.style.setProperty('--background-image', `url("${tracks[currentTrackIndex].img}")`);
-    playPausePic.src = "./file-storage/assets/svg/pause.png"
-    
-}
-setProgress();
-
+  }
 
   loadTrack()
-  updateProgress()
+
   body.style.setProperty('--background-image', `url("${tracks[currentTrackIndex].img}")`);
+  
