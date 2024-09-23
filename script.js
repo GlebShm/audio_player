@@ -9,6 +9,7 @@ const nextBtn = document.querySelector(".next");
 const songImg = document.querySelector(".songImg");
 const artistName = document.querySelector(".artist");
 const trackName = document.querySelector(".trackName");
+const body = document.querySelector("body");
 
 let isPlaying = false;
 let currentTrackIndex = 0;
@@ -89,7 +90,8 @@ function loadTrack() {
     songImg.src = tracks[currentTrackIndex].img;
     artistName.textContent = tracks[currentTrackIndex].artist;
     trackName.textContent = tracks[currentTrackIndex].title 
-    
+    // body.style.backgroundImage = `url("${tracks[currentTrackIndex].img}")`
+    body.style.setProperty('--background-image', `url("${tracks[currentTrackIndex].img}")`);
     playPausePic.src = "./file-storage/assets/svg/pause.png"
     
 }
